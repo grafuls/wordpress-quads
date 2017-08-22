@@ -38,6 +38,10 @@ __httpd_perms() {
 chown apache:apache /var/www/html/wp-config.php
 }
 
+__configure_wp() {
+exec /scripts/configure-wp.sh
+}
+
 __run_apache() {
 exec /scripts/run-apache.sh
 }
@@ -52,4 +56,5 @@ __handle_db_host
 
 # Call all functions
 __check
+# __configure_wp
 __run_apache

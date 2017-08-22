@@ -7,10 +7,12 @@
 FROM centos:centos7
 MAINTAINER The CentOS Project <cloud-ops@centos.org>
 
+ENV DB_NAME=mydb DB_ENV_MYSQL_USER=myuser DB_ENV_MYSQL_PASSWORD=password DB_PORT_3306_TCP_ADDR=172.17.0.2
+
 RUN yum -y update &&\
     yum clean all
 
-RUN yum -y install httpd php php-mysql php-gd openssl psmisc tar &&\
+RUN yum -y install httpd php php-mysql php-gd openssl psmisc tar less &&\
     yum clean all
 
 ADD scripts /scripts
@@ -20,8 +22,11 @@ RUN curl -LO http://wordpress.org/latest.tar.gz                         &&\
     chown -R apache:apache /var/www/                                    &&\
     chmod 755 /scripts/*
 RUN sed -i '96iServerName 127.0.0.1:80' /etc/httpd/conf/httpd.conf
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar &&\
+	chmod +x wp-cli.phar                                                &&\
+	mv wp-cli.phar /usr/local/bin/wp
 
-COPY wp-config.php /srv/wordpress/
+COPY wp-config.php /var/www/html/
 COPY wordpress.conf /etc/php-fpm.d/
 
 EXPOSE 80

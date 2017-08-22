@@ -1,0 +1,31 @@
+version: "2.1"
+services:
+    mariadb:
+        image: "mariadb:quads"
+        container_name: mariadb
+        environment:
+            MYSQL_USER: "myuser"
+            MYSQL_PASSWORD: "password"
+            MYSQL_DATABASE: "mydb"
+            MYSQL_ROOT_PASSWORD: "password"
+        healthcheck:
+            test: ["CMD", "/usr/bin/mysqlcheck", "--user=myuser", "--password=password", "mydb"]
+            interval: 2s
+            timeout: 2s
+            retries: 5
+    wordpress:
+        image: "wordpress:quads"
+        container_name: wordpress
+        ports:
+        - "80:80"
+        environment:
+            WORDPRESS_DB_PASSWORD: "password"
+            DB_HOST: mariadb
+        external_links:
+            - mariadb:mariadb
+        depends_on:
+            mariadb:
+                condition: service_healthy
+        links:
+            - mariadb
+            - mariadb:db

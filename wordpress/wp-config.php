@@ -16,16 +16,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', '{{ wp_db_name }}');
+define('DB_NAME', getenv('DB_NAME'));
 
 /** MySQL database username */
-define('DB_USER', '{{ wp_db_user }}');
+define('DB_USER', getenv('DB_ENV_MYSQL_USER'));
 
 /** MySQL database password */
-define('DB_PASSWORD', '{{ wp_db_password }}');
+define('DB_PASSWORD', getenv('DB_ENV_MYSQL_PASSWORD'));
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', getenv('DB_HOST'));
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -43,7 +43,7 @@ define('DB_COLLATE', '');
  * @since 2.6.0
  */
 
-{{ wp_salt.stdout }}
+/*{{ wp_salt.stdout }}*/
 
 /**#@-*/
 
@@ -75,10 +75,10 @@ define('WPLANG', '');
 define('WP_DEBUG', false);
 
 /** Disable Automatic Updates Completely */
-define( 'AUTOMATIC_UPDATER_DISABLED', {{auto_up_disable}} );
+/*define( 'AUTOMATIC_UPDATER_DISABLED', {{auto_up_disable}} );*/
 
 /** Define AUTOMATIC Updates for Components. */
-define( 'WP_AUTO_UPDATE_CORE', {{core_update_level}} );
+/*define( 'WP_AUTO_UPDATE_CORE', {{core_update_level}} );*/
 
 /* That's all, stop editing! Happy blogging. */
 
