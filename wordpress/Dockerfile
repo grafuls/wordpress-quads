@@ -26,4 +26,6 @@ COPY wordpress.conf /etc/php-fpm.d/
 
 EXPOSE 80
 
-ENTRYPOINT ["/bin/bash", "/scripts/start.sh"]
+RUN ["/usr/bin/bash", "/scripts/start.sh"]
+
+ENTRYPOINT /usr/sbin/httpd -D FOREGROUND && /usr/bin/bash /scripts/configure-wp.sh

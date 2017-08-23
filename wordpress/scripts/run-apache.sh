@@ -1,2 +1,5 @@
 #!/bin/bash
-exec /usr/sbin/httpd -D FOREGROUND
+
+printf "Starting httpd"
+/usr/sbin/httpd -D FOREGROUND
+
