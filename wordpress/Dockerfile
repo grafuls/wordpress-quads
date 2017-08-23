@@ -1,11 +1,6 @@
-# "ported" by Adam Miller <maxamillion@fedoraproject.org> from
-#   https://github.com/fedora-cloud/Fedora-Dockerfiles
-#
-# Originally written for Fedora-Dockerfiles by
-#   scollier <scollier@redhat.com>
-
 FROM centos:centos7
-MAINTAINER The CentOS Project <cloud-ops@centos.org>
+MAINTAINER RDU Scale Lab <grafuls@redhat.com>
+
 
 ENV DB_NAME=mydb DB_ENV_MYSQL_USER=myuser DB_ENV_MYSQL_PASSWORD=password DB_PORT_3306_TCP_ADDR=172.17.0.2
 
@@ -30,3 +25,5 @@ COPY wp-config.php /var/www/html/
 COPY wordpress.conf /etc/php-fpm.d/
 
 EXPOSE 80
+
+CMD ["/bin/bash", "/scripts/start.sh"]

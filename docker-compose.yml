@@ -16,7 +16,6 @@ services:
     wordpress:
         image: "wordpress:quads"
         container_name: wordpress
-        command: bash -c "sleep 10 && /bin/bash /scripts/start.sh"
         ports:
         - "80:80"
         environment:

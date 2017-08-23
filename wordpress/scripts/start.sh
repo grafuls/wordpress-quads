@@ -56,5 +56,8 @@ __handle_db_host
 
 # Call all functions
 __check
-__run_apache
-__configure_wp
+#__run_apache
+if ! __configure_wp; then
+	printf "Failed to configure WP.\n"
+	exit 1
+fi
