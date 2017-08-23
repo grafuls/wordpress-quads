@@ -1,3 +1,3 @@
 #! /bin/bash
 
-docker build -t wordpress:quads .
+docker build -t wordpress:quads . --no-cache

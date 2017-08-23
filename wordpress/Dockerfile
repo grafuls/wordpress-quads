@@ -7,7 +7,7 @@ ENV DB_NAME=mydb DB_ENV_MYSQL_USER=myuser DB_ENV_MYSQL_PASSWORD=password DB_PORT
 RUN yum -y update &&\
     yum clean all
 
-RUN yum -y install httpd php php-mysql php-gd openssl psmisc tar less &&\
+RUN yum -y install sendmail httpd php php-mysql php-gd openssl psmisc tar less &&\
     yum clean all
 
 ADD scripts /scripts
@@ -26,4 +26,4 @@ COPY wordpress.conf /etc/php-fpm.d/
 
 EXPOSE 80
 
-CMD ["/bin/bash", "/scripts/start.sh"]
+ENTRYPOINT ["/bin/bash", "/scripts/start.sh"]
