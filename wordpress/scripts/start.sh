@@ -56,5 +56,5 @@ __handle_db_host
 
 # Call all functions
 __check
-# __configure_wp
 __run_apache
+__configure_wp

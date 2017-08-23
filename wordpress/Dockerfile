@@ -30,4 +30,3 @@ COPY wp-config.php /var/www/html/
 COPY wordpress.conf /etc/php-fpm.d/
 
 EXPOSE 80
-CMD ["/bin/bash", "/scripts/start.sh"]
